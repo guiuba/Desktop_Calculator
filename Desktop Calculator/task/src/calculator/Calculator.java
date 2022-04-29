@@ -184,24 +184,9 @@ public class Calculator extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-
-                /*
-                if (!EquationLabel.getText().isEmpty()) {
-                    lastDotIndex = EquationLabel.getText().length() - 1;
-                    isOperandBeforeDot = getOperator(EquationLabel.getText().charAt(lastDotIndex)) == null;
-                    //     checkEquationFormat();
-                } else {
-                    //     isOperatorBeforeDot = true;
-                    //   checkEquationFormat();
-
-                }
-                 */
                 EquationLabel.setText(EquationLabel.getText() + Dot.getText());
                 lastDotIndex = EquationLabel.getText().length() - 1;
                 isFormatChecked = false;
-                //  isOperandBeforeDot = true;
-                //       isDecimal = true;
-                //       }
             }
         });
         buttonsPanel.add(Dot);
@@ -213,7 +198,6 @@ public class Calculator extends JFrame {
 
         Equals = new JButton("=");
         Equals.setName("Equals");
-        // Equals.addActionListener(e -> ResultLabel.setText(calculate(EquationLabel.getText())));
         Equals.addActionListener(e -> {
 
                     if (getPrecedence(EquationLabel.getText().charAt(EquationLabel.getText().length() - 1)) != -1) {
@@ -221,11 +205,8 @@ public class Calculator extends JFrame {
                     } else {
                         EquationLabel.setForeground(Color.BLACK);
                         String str = EquationLabel.getText();
-                        //  System.out.println(str); //test
                         str = infixToPostfix(str);
-                        //   System.out.println(str); //test
                         double ans = getAnswerFromPostfix(str);
-                        //       if (!isDivisionByZero) {
                         if ((int) ans == ans) {
                             ResultLabel.setText(String.valueOf((int) ans));
                         } else {
@@ -255,7 +236,6 @@ public class Calculator extends JFrame {
     }
 
     private void checkEquationFormat() {
-     //   System.out.println("Last dot index  : " + lastDotIndex);
 
         if (lastDotIndex == 0 ||
                 String.valueOf(EquationLabel.getText().charAt(lastDotIndex - 1)).matches("\\D")) {
@@ -270,26 +250,6 @@ public class Calculator extends JFrame {
                             + 0 + EquationLabel.getText().substring(lastDotIndex + 1));
             isFormatChecked = true;
         }
-
-
-
-           /*
-                 if (getOperator(EquationLabel.getText().charAt(lastDotIndex)) == null) {
-            EquationLabel.setText(
-                    EquationLabel.getText().substring(0, lastDotIndex)
-                            + 0 + EquationLabel.getText().substring(lastDotIndex));
-            //      isOperandBeforeDot = false;
-        }
-else {
-            EquationLabel.setText(
-                    EquationLabel.getText().substring(0, lastDotIndex + 1)
-                            + "0" + EquationLabel.getText().substring(lastDotIndex + 1));
-        }
-           if (EquationLabel.getText().matches(".+\\D\\..+")) {
-            System.out.println("I miss a zero before dot");
-        }
-            */
-
     }
 
     private void redEquationLabel() {
